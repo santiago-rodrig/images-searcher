@@ -14,6 +14,7 @@ function App() {
     if (previousePage < 1) return
 
     setPage(previousePage)
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})
   }
 
   const handleNextPage = () => {
@@ -22,6 +23,7 @@ function App() {
     if (nextPage > totalPages) return
 
     setPage(nextPage)
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})
   }
 
   useEffect(() => {
