@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Form from "./components/Form";
-import Images from './components/Images'
+import Images from "./components/Images";
 
 function App() {
   const [query, setQuery] = useState("");
