@@ -5,22 +5,25 @@ import Images from "./components/Images";
 function App() {
   const [query, setQuery] = useState("");
   const [images, setImages] = useState([]);
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
 
   useEffect(() => {
     if (query.trim() !== "") {
       const queryAPI = async () => {
         const imagesPerPage = 30;
         const API_KEY = "15275659-9a92badf071fe45b3a148af55";
-        const URL = `https://pixabay.com/api/?q=${query}&per_page=${imagesPerPage}&key=${API_KEY}`;
+        const URL = `https://pixabay.com/api/?q=${query}&per_page=${imagesPerPage}&key=${API_KEY}&page=${page}`;
         const response = await fetch(URL);
         const payload = await response.json();
 
         setImages(payload.hits);
+        setTotalPages(Math.ceil(payload.totalHits / imagesPerPage))
       };
 
       queryAPI();
     }
-  }, [query]);
+  }, [query, page]);
 
   return (
     <div className="container">
