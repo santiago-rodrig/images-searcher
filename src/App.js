@@ -8,6 +8,22 @@ function App() {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
 
+  const handlePreviousPage = () => {
+    const previousePage = page - 1
+
+    if (previousePage < 1) return
+
+    setPage(previousePage)
+  }
+
+  const handleNextPage = () => {
+    const nextPage = page + 1
+
+    if (nextPage > totalPages) return
+
+    setPage(nextPage)
+  }
+
   useEffect(() => {
     if (query.trim() !== "") {
       const queryAPI = async () => {
@@ -33,6 +49,8 @@ function App() {
       </div>
       <div className="row justify-content-center">
         <Images images={images} />
+        <button type="button" className={`btn btn-info mr-1 ${(page - 1) < 1 ? 'd-none' : 'd-inline-block'}`} onClick={handlePreviousPage}>Anterior &laquo;</button>
+        <button type="button" className={`btn btn-info ${(page + 1) > totalPages ? 'd-none' : 'd-inline-block'}`} onClick={handleNextPage}>Siguiente &raquo;</button>
       </div>
     </div>
   );
