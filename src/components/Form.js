@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ErrorComponent from "./ErrorComponent";
 
-const Form = () => {
+const Form = ({ setQuery }) => {
   const [queryTerm, setQueryTerm] = useState("");
   const [error, setError] = useState(false);
 
@@ -15,6 +15,7 @@ const Form = () => {
     }
 
     setError(false);
+    setQuery(queryTerm);
   };
 
   return (
