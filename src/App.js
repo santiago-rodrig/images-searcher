@@ -5,26 +5,26 @@ import Images from "./components/Images";
 function App() {
   const [query, setQuery] = useState("");
   const [images, setImages] = useState([]);
-  const [page, setPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(1)
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const handlePreviousPage = () => {
-    const previousePage = page - 1
+    const previousePage = page - 1;
 
-    if (previousePage < 1) return
+    if (previousePage < 1) return;
 
-    setPage(previousePage)
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})
-  }
+    setPage(previousePage);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
 
   const handleNextPage = () => {
-    const nextPage = page + 1
+    const nextPage = page + 1;
 
-    if (nextPage > totalPages) return
+    if (nextPage > totalPages) return;
 
-    setPage(nextPage)
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth'})
-  }
+    setPage(nextPage);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
 
   useEffect(() => {
     if (query.trim() !== "") {
@@ -36,7 +36,7 @@ function App() {
         const payload = await response.json();
 
         setImages(payload.hits);
-        setTotalPages(Math.ceil(payload.totalHits / imagesPerPage))
+        setTotalPages(Math.ceil(payload.totalHits / imagesPerPage));
       };
 
       queryAPI();
@@ -51,8 +51,24 @@ function App() {
       </div>
       <div className="row justify-content-center">
         <Images images={images} />
-        <button type="button" className={`btn btn-info mr-1 ${(page - 1) < 1 ? 'd-none' : 'd-inline-block'}`} onClick={handlePreviousPage}>Anterior &laquo;</button>
-        <button type="button" className={`btn btn-info ${(page + 1) > totalPages ? 'd-none' : 'd-inline-block'}`} onClick={handleNextPage}>Siguiente &raquo;</button>
+        <button
+          type="button"
+          className={`btn btn-info mr-1 ${
+            page - 1 < 1 ? "d-none" : "d-inline-block"
+          }`}
+          onClick={handlePreviousPage}
+        >
+          Anterior &laquo;
+        </button>
+        <button
+          type="button"
+          className={`btn btn-info ${
+            page + 1 > totalPages ? "d-none" : "d-inline-block"
+          }`}
+          onClick={handleNextPage}
+        >
+          Siguiente &raquo;
+        </button>
       </div>
     </div>
   );
