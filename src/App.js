@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Form from "./components/Form";
+import Images from './components/Images'
 
 function App() {
   const [query, setQuery] = useState("");
@@ -26,6 +27,9 @@ function App() {
       <div className="jumbotron">
         <p className="lead text-center">Buscador de Imágenes</p>
         <Form setQuery={setQuery} />
+      </div>
+      <div className="row justify-content-center">
+        <Images images={images} />
       </div>
     </div>
   );
